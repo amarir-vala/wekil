@@ -9,7 +9,7 @@ router = APIRouter()
 class MessageRequest(BaseModel):
     shop_id: str
     shop_name: str
-    customer_phone: str    # ← new
+    customer_phone: str    
     customer_message: str
 
 class CatalogRequest(BaseModel):
@@ -19,7 +19,7 @@ class CatalogRequest(BaseModel):
 @router.post("/catalog")
 def upload_catalog(request: CatalogRequest):
     result = add_catalog_items(shop_id=request.shop_id, items=request.items)
-    return {"status": "catalog uploaded ✅", "items_added": result["added"]}
+    return {"status": "catalog uploaded", "items_added": result["added"]}
 
 @router.post("/message")
 def handle_message(request: MessageRequest):
